@@ -49,9 +49,19 @@ function calculateCycles(baseDate, mode) {
     sleepCycle3.getTime() - SHORT_CYCLE_TIME_DURATION,
   );
 
-  const sleepCycleList = [sleepCycle4, sleepCycle3, sleepCycle2, sleepCycle1];
+  const sleepCycleList = [sleepCycle1, sleepCycle2, sleepCycle3, sleepCycle4];
 
-  return sleepCycleList.map(formatSleepCycle);
+  if (mode === 'sleepNow') {
+    const sleepCycle5 = new Date(
+      sleepCycle4.getTime() - SHORT_CYCLE_TIME_DURATION,
+    );
+    const sleepCycle6 = new Date(
+      sleepCycle5.getTime() - SHORT_CYCLE_TIME_DURATION,
+    );
+    sleepCycleList.push(sleepCycle5, sleepCycle6);
+  }
+
+  return sleepCycleList.map(formatSleepCycle).reverse();
 }
 
 /**
